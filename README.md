@@ -38,3 +38,5 @@ In the middle section of the header is the search text field where the user can 
 ##### Store information page
 
 Here is the store information are shown together with the static map of the location of the store.
+
+![alt text](https://github.com/dittmarconsulting/PieOfTheDay/blob/master/src/assets/images/beef-bacon.png)
