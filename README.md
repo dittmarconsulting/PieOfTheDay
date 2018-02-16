@@ -31,6 +31,8 @@ The rating of the store is displayed in form of a number next to the star. There
 
 Furthermore, there is an extra feature that shows whether the "Pie of the day" is in fact the cheapest pie. If yes a "green thumb-up" is shown and if not a "red thumb-down" is displayed.
 
+The entire "pie card" is clickable. Once selected the user will be redirected to the store information page.
+
 On the upper right corner of the header the user can switch the sorting either from cheapest to most expensive price or visa versa
 
 In the middle section of the header is the search text field where the user can search for a pie name.
