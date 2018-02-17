@@ -167,12 +167,8 @@ export const getStores = () =>
             cache: 'default'
         }
 
-        // destructure pieState
-        //const { pieLoadOffset } = getState().pieState
-
         // set the offset & limit
-        const offset = (getState().pieState)
-            ? getState().pieState.pieLoadOffset + 1 : 1// set the page number
+        const offset = getState().pieState.pieLoadOffset + 1 // set the page number
         const limit = 5 // how many pies to load in a single fetch
 
         // poluate the URL based on pagination
@@ -182,7 +178,7 @@ export const getStores = () =>
             '&_limit=' + limit
 
         //fetch pies
-        fetch(url, headers)
+        return fetch(url, headers)
             .then((response) => response.json())
             .then(data => {
 
