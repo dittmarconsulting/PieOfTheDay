@@ -99,7 +99,7 @@ export const setPoD = () =>
         })
 
         // sort the array
-        dispatch(sortPoD('asc'))
+        pieOftheDay.sort((a, b) => a.pieData.price > b.pieData.price)
 
         // set the array in the store
         dispatch(setPieOfTheDay(pieOftheDay))
@@ -116,9 +116,9 @@ export const sortPoD = (mode) =>
 
         // sort the array
         if(mode === 'asc') {
-            pieOftheDay.sort((a, b) => a.pieData.price < b.pieData.price)
-        } else  if(mode === 'desc') {
             pieOftheDay.sort((a, b) => a.pieData.price > b.pieData.price)
+        } else  if(mode === 'desc') {
+            pieOftheDay.sort((a, b) => a.pieData.price < b.pieData.price)
         }
 
         // set the sort mode
@@ -134,16 +134,13 @@ export const searchPies = (searchText) =>
 
         if(searchText) {
 
-            // get the array
-            const pieOftheDay = [
-                ...getState().pieState.pieOftheDay
-            ]
-
-            // set the array in the store
-            dispatch(setPieOfTheDay(pieOftheDay
+            // filter the array
+            const pieOftheDay = getState().pieState.pieOftheDay
                 .filter(element => element.pieData.displayName
                     .toLowerCase().includes(searchText.toLowerCase()))
-            ))
+
+            // set the array in the store
+            dispatch(setPieOfTheDay(pieOftheDay))
 
         } else {
 
@@ -171,7 +168,7 @@ export const getStores = () =>
         const offset = (getState().pieState)
         ? getState().pieState.pieLoadOffset + 1
         : 1
-        
+
         // how many pies to load in a single fetch
         const limit = 5
 
