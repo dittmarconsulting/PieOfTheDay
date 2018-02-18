@@ -15,6 +15,15 @@ import PieCard from '../components/PieCard'
 
 class PieList extends Component {
 
+    constructor() {
+        super()
+        // FlatList has a bug that invokes onEndReached() more times. Here a solution:
+        // https://github.com/facebook/react-native/issues/14015#issuecomment-310675650
+        this.state = {
+            onEndReachedCalledDuringMomentum: false
+        }
+    }
+
     componentDidMount() {
         const { getStores } = this.props
         // load the first 5 stores
@@ -23,8 +32,13 @@ class PieList extends Component {
 
     _endReached() {
         const { getStores } = this.props
-        // load the next 5 stores
-        getStores()
+
+        if(!this.state.onEndReachedCalledDuringMomentum) {
+            console.log('_endReached')
+            // load the next 5 stores
+            getStores()
+            this.setState({onEndReachedCalledDuringMomentum: true})
+        }
     }
 
     render() {
@@ -56,6 +70,7 @@ class PieList extends Component {
                             automaticallyAdjustContentInsets={false}
                             onEndReachedThreshold={0}
                             onEndReached={::this._endReached}
+                            onMomentumScrollBegin={() => this.setState({onEndReachedCalledDuringMomentum: false})}
                             keyExtractor={item => item.id.toString()}
                             renderItem={({ item }) =>
                                 <PieCard
