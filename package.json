@@ -47,6 +47,10 @@
         "remote-redux-devtools": "^0.5.12"
     },
     "jest": {
-        "preset": "react-native"
+        "preset": "react-native",
+        "automock": false,
+        "setupFiles": [
+            "./setupJest.js"
+        ]
     }
 }
