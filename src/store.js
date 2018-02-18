@@ -43,18 +43,18 @@ const enhancer = composeEnhancers(
 const store = createStore(reducer, {}, enhancer)
 
 // load the saved store and update the store with the saved version
-const load = storage.createLoader(engine)
-load(store)
-    .then(() => {
-
-        // set the flag 'storeSynced' to true
-        store.dispatch({
-            type: C.STORE_SYNCED,
-            payload: true
-        })
-    })
-    .catch(() => {
-        console.log('Failed to load previous state')
-    })
+// const load = storage.createLoader(engine)
+// load(store)
+//     .then(() => {
+//
+//         // set the flag 'storeSynced' to true
+//         store.dispatch({
+//             type: C.STORE_SYNCED,
+//             payload: true
+//         })
+//     })
+//     .catch(() => {
+//         console.log('Failed to load previous state')
+//     })
 
 export default store
